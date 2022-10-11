@@ -66,6 +66,12 @@ FROM producto as P JOIN categoria as C ON P.idCategoria = C.id
 WHERE C.nombre LIKE 'viaticos' AND EXTRACT(MONTH FROM P.fecha_actualizacion) <= '09';
 
 
--- Listar el nombre del producto y el nombre de categoría correspondiente al producto, que tengan más de 4 en cantidad, ordenados por cantidad.
+-- Listar el nombre del producto y el nombre de categoría correspondiente al producto, que tengan más de 4 en cantidad, ordenados por cantidad
+SELECT P.nombre, C.nombre AS "Categoria"
+FROM producto AS P INNER JOIN categoria AS C ON P.idCategoria = C.id
+WHERE P.cantidad > 4 ORDER BY P.cantidad;
 
 -- Listar el nombre del proveedor donde la cantidad de productos sea mayor a 11, sin registros repetidos.
+SELECT DISTINCT P.nombre, P.cantidad
+FROM producto as P INNER JOIN categoria as C ON P.idCategoria = C.id
+WHERE P.cantidad > 11;
